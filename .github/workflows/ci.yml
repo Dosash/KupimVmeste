@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+          cache: pip
+      - run: python -m pip install ".[dev]"
+      - run: ruff check app tests
+      - run: ruff format --check app tests
+      - run: systemd-analyze verify deploy/*.service deploy/*.timer
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - run: python -m pip install .
+      - run: python -m pip check
+      - run: kupim-vmeste --help
+      - run: kupim-vmeste-backup --help
+      - run: python -m unittest discover -s tests -v

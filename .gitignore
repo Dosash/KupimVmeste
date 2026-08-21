@@ -1,0 +1,53 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+
+# Virtual environments
+.venv/
+venv/
+
+# Python caches and build output
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.ruff_cache/
+.mypy_cache/
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Runtime data and backups
+data/
+backups/
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+*.sqlite-shm
+*.sqlite-wal
+*.sqlite3-journal
+*.sqlite3-shm
+*.sqlite3-wal
+*.tmp
+*.log
+
+# Private keys and certificates
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Editors and operating systems
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
