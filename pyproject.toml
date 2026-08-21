@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kupim-vmeste"
+version = "1.0.0"
+description = "Private shared Telegram shopping list with budgets, templates and reminders"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+keywords = ["telegram-bot", "shopping-list", "sqlite", "self-hosted"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: No Input/Output (Daemon)",
+    "Framework :: AsyncIO",
+    "Natural Language :: Russian",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Communications :: Chat",
+]
+dependencies = [
+    "python-telegram-bot[job-queue]==22.8",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff==0.16.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/Dosash/KupimVmeste"
+Repository = "https://github.com/Dosash/KupimVmeste.git"
+Issues = "https://github.com/Dosash/KupimVmeste/issues"
+
+[project.scripts]
+kupim-vmeste = "app.main:main"
+kupim-vmeste-backup = "app.backup:main"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP", "B", "SIM", "PIE"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"

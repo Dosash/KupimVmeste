@@ -1,0 +1,12 @@
+[Unit]
+Description=Daily local backup timer for KupimVmeste
+
+[Timer]
+OnCalendar=*-*-* 03:30:00 Europe/Moscow
+Persistent=true
+RandomizedDelaySec=10m
+AccuracySec=1m
+Unit=shopping-list-bot-backup.service
+
+[Install]
+WantedBy=timers.target
